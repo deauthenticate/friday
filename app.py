@@ -5,6 +5,7 @@ import sys
 os.system("pip install jishaku")
 #os.system("pip install discord")
 os.system("pip install -U git+https://github.com/Rapptz/discord.py")
+os.system("pip install requests")
 import json
 import ast
 import inspect
