@@ -300,7 +300,12 @@ async def ping(ctx):
   ping = round(client.latency*1000, 1)
   em = discord.Embed(color=00000, description=f"{ping_emoji_} Websocket Latency: {ping}ms.\n{ping_emoji_} Database Latency: {db_ping}ms.")
   await ctx.reply(embed=em, mention_author=False)
-@client.command(aliases=["h"])
+@client.group(invoke_without_command=True, aliases=["h"])
+@commands.guild_only()
+@commands.cooldown(1, 10, commands.BucketType.user)
+async def help(ctx):
+  if ctx.message.author.id in blacklisted:
+    return
 async def help(ctx):
   em = discord.Embed(color=00000, description=f'''**Friday Help Menu**
 {dash_emoji_}**Need Help?**
@@ -313,6 +318,23 @@ async def help(ctx):
   em.set_thumbnail(url=thumb_url)
   await ctx.reply(embed=em, mention_author=False)
 
+@help.group(aliases=["whitelist"])
+async def wl(ctx):
+  if ctx.message.author.id in blacklisted:
+    return
+  embed = discord.Embed(title="Command Help - Whitelist", color=00000, description=f'''
+{dash_emoji_} Makes the user immune from security events!
+                        
+{dash_emoji_}**Aliases**
+{reply_emoji_}`wl`
+{dash_emoji_}**Usage**
+{reply_emoji_}`wl add* / rm* <user>`
+{reply_emoji_}`wl show*`
+{dash_emoji_}**Example**
+{reply_emoji_}`wl add @RisinPlayZ`
+{reply_emoji_}`wl rm 661563598711291904`
+''')
+  await ctx.reply(embed=embed, mention_author=False)
 @client.command()
 @commands.cooldown(1, 10, commands.BucketType.user)
 @commands.guild_only()
