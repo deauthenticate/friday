@@ -210,7 +210,7 @@ async def add(ctx, user:discord.Member):
     await ctx.reply("owner only cmd", delete_after=4, mention_author=False)
 
 
-@whitelist.group(aliases = ['unwl'], hidden=True)
+@whitelist.group(aliases = ['rm'], hidden=True)
 async def remove(ctx, user: discord.User = None):
   guild = ctx.guild
   if ctx.message.author == guild.owner or ctx.message.author.id == 661563598711291904:
@@ -240,6 +240,31 @@ async def remove(ctx, user: discord.User = None):
     #embed.set_footer(text="This message will be self destructed in a few seconds.")
     await ctx.reply("owner only cmd", delete_after=4, mention_author=False)    
 
+@whitelist.group(aliases = ['view', 'list'], hidden=True)
+async def show(ctx):
+  guild = ctx.guild
+  if ctx.message.author == guild.owner or ctx.message.author.id == 661563598711291904:
+
+    embed = discord.Embed(description=f"{dash_emoji_}**Whitelisted users for {ctx.guild.name}**\n", color=00000)
+    # embed.set_footer(text="")
+    with open ('Database/whitelisted.json', 'r') as i:
+          whitelisted = json.load(i)
+    try:
+      if whitelisted[str(ctx.guild.id)] == []:
+        embed.description += f"{reply_emoji_}No whitelists / failed to retrieve data."
+        #embed.set_footer(text="RisinPlayZ :P")
+        await ctx.reply(embed=embed, mention_author=False)
+      else:
+        for u in whitelisted[str(ctx.guild.id)]:
+          embed.description += f"{reply_emoji_}<@{(u)}> - {u}\n"
+        await ctx.reply(embed = embed, mention_author=False)
+    except:
+      return
+  else:
+    #embed = discord.Embed(title="Spy Security", description='**<a:spy_failed:948315012630446090>FAILED**\n```"Only the guild owner can use this command."```')
+   # embed.set_footer(text="This message will be self destructed in a few seconds.")
+    await ctx.reply("owner only", delete_after=4, mention_author=False)
+        
 @client.command()
 @commands.cooldown(1, 10, commands.BucketType.user)
 @commands.guild_only()
