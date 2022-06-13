@@ -179,7 +179,7 @@ async def syncwl(ctx):
 async def whitelist(ctx):
   if ctx.message.author.id in blacklisted:
     return
-  embed = discord.Embed(title="Command Help - Whitelist", color=00000, description='''
+  embed = discord.Embed(title="Command Help - Whitelist", color=00000, description=f'''
 {dash_emoji_} Makes the user immune from security events!
                         
 {dash_emoji_}**Aliases**
