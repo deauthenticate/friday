@@ -177,7 +177,21 @@ async def syncwl(ctx):
 @commands.cooldown(1, 3, commands.BucketType.user)
 @commands.guild_only()
 async def whitelist(ctx):
-  return
+  if ctx.message.author.id in blacklisted:
+    return
+  embed = discord.Embed(title="Whitelist", color=00000, description='''
+> Makes the user immune from security events!
+                        
+**Aliases**
+`wl`
+**Usage**
+`wl add* / rm* <user>`
+`wl show*`
+**Example**
+`wl add @RisinPlayZ`
+`wl rm 661563598711291904`
+''')
+  await ctx.reply(embed=embed, mention_author=False)
 
 @whitelist.group()
 async def add(ctx, user:discord.Member):
