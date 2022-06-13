@@ -167,7 +167,7 @@ async def syncwl(ctx):
         #file = File('Database/whitelisted.json', name="database.txt")
 @client.group(invoke_without_command=True, aliases=["wl"])
 @commands.cooldown(1, 3, commands.BucketType.user)
-@commands.guild_only(){}
+@commands.guild_only()
 async def whitelist(ctx):
   return
 
