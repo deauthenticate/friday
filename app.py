@@ -325,7 +325,7 @@ async def features(ctx):
 @commands.cooldown(1, 10, commands.BucketType.user)
 @commands.guild_only()
 async def cmds(ctx):
-  em = discord.Embed(color=00000, description=f"`inv`, `setup`, `setvanity`, `trigger`, `punishment`, `toggle`, `ban`, `kick`, `timeout`, `unmute`, `scan`, `whitelist`, `add*`, `remove*`, `audit`, `status`\n\n{dash_emoji_}**help <command> for more info.**", title="All Commands", timestamp=datetime.datetime.utcnow())
+  em = discord.Embed(color=00000, description=f"`inv`, `setup`, `setvanity`, `trigger`, `punishment`, `toggle`, `settings`, `ban`, `kick`, `timeout`, `unmute`, `lock`, `unlock`, `hide`, `unhide`, `scan`, `whitelist`, `add*`, `rm*`, `show`, `audit`, `status`\n\n{dash_emoji_}**help <command> for more info.**", title="All Commands", timestamp=datetime.datetime.utcnow())
   em.set_footer(icon_url=ctx.message.author.avatar, text=f'Requested by {ctx.message.author}')
   await ctx.reply(embed=em, mention_author=False)
 
