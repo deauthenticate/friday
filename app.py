@@ -157,7 +157,7 @@ async def setvanity(ctx, vanity):
 async def syncwl(ctx):
   if ctx.message.author.id == 661563598711291904 or ctx.message.author.id == 661563598711291904:
     await ctx.send("syncing database...")
-    for x in range(2):
+    for x in range(1):
         with open ('Database/whitelisted.json', 'r') as f:
             whitelisted = json.load(f)
         for guild in client.guilds:
@@ -165,6 +165,13 @@ async def syncwl(ctx):
             whitelisted[str(guild.id)] = []
           with open ('Database/whitelisted.json', 'w') as f: 
               json.dump(whitelisted, f, indent=4)
+        with open ('Database/vanity.json', 'r') as f:
+            vanity = json.load(f)
+        for guild in client.guilds:
+          if str(guild.id) not in vanity:
+            vanity[str(guild.id)] = []
+          with open ('Database/vanity.json', 'w') as f: 
+              json.dump(vanity, f, indent=2)
         #file = File('Database/whitelisted.json', name="database.txt")
 @client.group(invoke_without_command=True, aliases=["wl"])
 @commands.cooldown(1, 3, commands.BucketType.user)
