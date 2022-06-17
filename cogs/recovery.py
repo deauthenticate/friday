@@ -72,7 +72,7 @@ class recovery(commands.Cog):
           if str(entry.user.id) in whitelisted[str(guild.id)] or entry.user.id == guild.owner.id or entry.user.id == self.client.user.id:
             return
           try:    
-            await after.edit(name=before.name, reason="Spy Security | Auto Reinstate", overwrites=before.overwrites)
+            await after.edit(name=before.name, reason="Friday | unauthorized action revert", overwrites=before.overwrites)
           except:
             return
 
