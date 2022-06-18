@@ -178,7 +178,7 @@ async def on_ready():
   dbhook.send("Ready!")
   await client.load_extension('jishaku')
   print("READYYYYYYYY")  
-  await client.add_cog(recovery(client))
+ # await client.add_cog(recovery(client))
   await client.add_cog(logging(client))
   sync_db()
 
