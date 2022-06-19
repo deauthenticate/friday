@@ -1014,7 +1014,9 @@ async def on_guild_emojis_update(guild, before, after):
         return
 
 @client.event
-async def on_member_update(before, after):
+async def on_member_update(before, after): 
+  if before.id == client.user.id:
+    return
   whitelisted = load_db()
   guild = after.guild
   dangerous_perms = ["administrator"]
