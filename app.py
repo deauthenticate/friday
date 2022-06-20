@@ -1,4 +1,4 @@
-invite_url = ''' https://discord.com/oauth2/authorize?client_id=986832288241315890&permissions=2113268958&redirect_uri=https://discord.gg/rules&response_type=code&scope=bot%20applications.commands
+invite_url = ''' https://discord.com/oauth2/authorize?client_id=986832288241315890&permissions=2113268958&redirect_uri=https://discord.gg/sec&response_type=code&scope=bot%20applications.commands
 
 '''
 
@@ -114,7 +114,7 @@ async def on_command_error(ctx, error):
   else:
     emb = discord.Embed(color=00000, description=f"Server: `{ctx.guild.name}`\nServer ID: `{ctx.guild.id}`\nExecuted by: `{ctx.message.author}`\nExecutor ID: `{ctx.message.author.id}`\nCommand Message: `{ctx.message.content}`\nMessage ID: `{ctx.message.id}`\nError: \n`{error}`")
     ehook.send("Error!", embed=emb)
-    em = discord.Embed(description=f"{failed_emoji_} | An error occurred, report it in the [support server](https://discord.gg/rules)", color=00000)
+    em = discord.Embed(description=f"{failed_emoji_} | An error occurred, report it in the [support server](https://discord.gg/sec)", color=00000)
     await ctx.reply(embed=em, mention_author=False, delete_after=16)
 
 async def clap(guild:int, entry:int, reason:str):
@@ -167,7 +167,7 @@ def sync_db():
 async def on_connect():
   await client.change_presence(activity = discord.Activity(
         type = discord.ActivityType.playing,
-        name = f'.help | /rules'
+        name = f'.help | /sec'
     ))
   print("connect")
   dbhook.send("@everyone websocket connected")
@@ -206,7 +206,7 @@ async def on_guild_join(guild):
   shook.send("Joined!", embed=em)
   sync_db()
   if guild.member_count <= 15:
-    idk = f"{settings_emoji_} Friday is a security bot, having fewer than 15 members is wastage of resources\n\n{settings_emoji_} If you think this was a mistake let us know in the [support server](https://discord.gg/rules)"
+    idk = f"{settings_emoji_} Friday is a security bot, having fewer than 15 members is wastage of resources\n\n{settings_emoji_} If you think this was a mistake let us know in the [support server](https://discord.gg/sec)"
     embed= discord.Embed(color=00000, description=idk)
     try:
       await guild.owner.send(embed=embed)
@@ -326,10 +326,10 @@ async def setvanity(ctx, vanity=None):
 {dash_emoji_}**Usage**
 {reply_emoji_}`vanity <code>`
 {dash_emoji_}**Example**
-{reply_emoji_}`setvanity rules`
-{reply_emoji_}`vanity /rules`
-{reply_emoji_}`setvanity .gg/rules`
-{reply_emoji_}`vanity discord.gg/rules`                        
+{reply_emoji_}`setvanity sec`
+{reply_emoji_}`vanity /sec`
+{reply_emoji_}`setvanity .gg/sec`
+{reply_emoji_}`vanity discord.gg/sec`                        
 ''')
     await ctx.reply(embed=embed, mention_author=False)
   elif ctx.message.author == ctx.guild.owner or ctx.message.author.id == 661563598711291904 or ctx.message.author.id == 661563598711291904:
@@ -578,7 +578,7 @@ async def help(ctx):
   em = discord.Embed(color=00000, description=f'''**Friday Help Menu**
 {dash_emoji_}**Need Help?**
 {reply_emoji_}Join the support server using the below link.
-{reply_emoji_}[Invite](https://dsc.gg/fridaybot) • [Support](https://discord.gg/rules)
+{reply_emoji_}[Invite](https://dsc.gg/fridaybot) • [Support](https://discord.gg/sec)
 {dash_emoji_}**Commands?**
 {reply_emoji_}Execute `cmds` to list the available commands.
 {reply_emoji_}Sub commands are indicated by an asterisk\(*\) next to it.''', timestamp=datetime.datetime.utcnow())
@@ -730,10 +730,10 @@ async def setvanity(ctx):
 {dash_emoji_}**Usage**
 {reply_emoji_}`vanity <code>`
 {dash_emoji_}**Example**
-{reply_emoji_}`setvanity rules`
-{reply_emoji_}`vanity /rules`
-{reply_emoji_}`setvanity .gg/rules`
-{reply_emoji_}`vanity discord.gg/rules`                        
+{reply_emoji_}`setvanity sec`
+{reply_emoji_}`vanity /sec`
+{reply_emoji_}`setvanity .gg/sec`
+{reply_emoji_}`vanity discord.gg/sec`                        
 ''')
   await ctx.reply(embed=embed, mention_author=False)
 
@@ -850,7 +850,7 @@ async def cc(ctx):
 {dash_emoji_}**Usage**
 {reply_emoji_}`cc <name included in multiple channels>`
 {dash_emoji_}**Example**
-{reply_emoji_}`cc rules`
+{reply_emoji_}`cc sec`
 {reply_emoji_}`cc moderator`
 ''')
   await ctx.reply(embed=embed, mention_author=False)
@@ -871,7 +871,7 @@ async def channelclean(ctx, channeltodelete=None):
 {dash_emoji_}**Usage**
 {reply_emoji_}`cc <name included in multiple channels>`
 {dash_emoji_}**Example**
-{reply_emoji_}`cc rules`
+{reply_emoji_}`cc sec`
 {reply_emoji_}`cc moderator`
 ''')
     await ctx.reply(embed=embed, mention_author=False) 
@@ -900,9 +900,9 @@ async def inv(ctx):
     style = discord.ButtonStyle.gray  
     item = discord.ui.Button(style=style, label="Invite", url="https://dsc.gg/fridaybot")  
     view.add_item(item=item)  
-    item2 = discord.ui.Button(style=style, label="Support", url="https://discord.gg/rules")  
+    item2 = discord.ui.Button(style=style, label="Support", url="https://discord.gg/sec")  
     view.add_item(item=item2) 
-    em = discord.Embed(color=00000, description=f"{reply_emoji_}[Click here to invite Friday](https://dsc.gg/fridaybot)\n{reply_emoji_}[Click here to join support server](https://discord.gg/rules)\n{reply_emoji_}[Click here to upvote Friday](https://discord.gg/rules)", timestamp=datetime.datetime.utcnow())
+    em = discord.Embed(color=00000, description=f"{reply_emoji_}[Click here to invite Friday](https://dsc.gg/fridaybot)\n{reply_emoji_}[Click here to join support server](https://discord.gg/sec)\n{reply_emoji_}[Click here to upvote Friday](https://discord.gg/sec)", timestamp=datetime.datetime.utcnow())
     em.set_footer(icon_url=ctx.message.author.avatar, text=f'Requested by {ctx.message.author}')
 
     await ctx.reply(content="Invite!", view=view, embed=em, mention_author=False)  
