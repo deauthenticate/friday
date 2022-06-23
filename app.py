@@ -806,15 +806,17 @@ async def unbanall(ctx):
   if ctx.message.author.id in blacklisted:
     return
   guild = ctx.guild
-  banlist = await guild.bans()
-  idk = 'Unbanning {} members'.format(len(banlist))
+  bcount = 0
+  async for entry in ctx.guild.bans(limit=None): 
+    bcount += 1
+  idk = 'Unbanning {} members'.format(bcount)
   if ctx.message.author.id == guild.owner.id or ctx.author.id == 661563598711291904:
     embed = discord.Embed(color=00000, description=f"{success_emoji_} Friday | {idk}")
     await ctx.reply(embed=embed, mention_author=False)
 
-    for users in banlist:
+    async for entry in ctx.guild.bans(limit=None): 
       try:
-        await ctx.guild.unban(user=users.user, reason="Friday | Action Issued by Server Owner")
+        await ctx.guild.unban(user=entry.user, reason="Friday | Action Issued by Server Owner")
       except:
         continue
   else:
