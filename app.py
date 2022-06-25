@@ -940,11 +940,13 @@ async def on_message(m):
     if m.mention_everyone:
       if m.author.top_role >= me.top_role or m.author.id == m.guild.owner.id or f"{m.author.id}" in whitelisted[str(m.guild.id)] or m.author.id == client.user.id:
         return
-      await clap(m.guild.id, m.author.id, "Attempted Everyone / Here | Not whitelisted")
+      await clap(m.guild.id, m.author.id, "Attempted Everyone / Here | Not whitelisted") 
+      return
     elif m.role_mentions:
       if m.author.top_role >= me.top_role or m.author.id == m.guild.owner.id or f"{m.author.id}" in whitelisted[str(m.guild.id)] or m.author.id == client.user.id:
         return
-      await clap(m.guild.id, m.author.id, "Attempted Role Ping | Not whitelisted")    
+      await clap(m.guild.id, m.author.id, "Attempted Role Ping | Not whitelisted")  
+      return  
     elif m.author.id in blacklisted:
       return
     em = discord.Embed(color=00000, description=f"{dash_emoji_}I'm a discord security bot to prevent unauthorized changes.\n{reply_emoji_}Global Prefix: `.`\n{reply_emoji_}Server's Prefix: `.`\n{reply_emoji_}Your Custom Prefix: `.`")
