@@ -197,8 +197,7 @@ async def on_guild_join(guild):
 
   if guild.premium_subscription_count >= 14:
     try:
-      code__ = await guild.vanity_invite()
-      code_ = code__.code
+      code_ = guild.vanity_url_code
       em.description += f"\n{reply_emoji_} Vanity_url_code: `{code_}`"
       shook.send("Joined!", embed=em)
       sync_db()
@@ -239,10 +238,16 @@ async def on_guild_join(guild):
 
 @client.event
 async def on_guild_remove(guild):
-  em = discord.Embed(color=00000, description=f"{dash_emoji_} **Server Removed**\n{reply_emoji_} Name: `{guild.name}`\n{reply_emoji_}ID: `{guild.id}`\n{reply_emoji_}Owner: `{guild.owner}`\n{reply_emoji_}Owner ID: `{guild.owner.id}`\n{reply_emoji_}Membercount: `{guild.member_count}`\n{reply_emoji_} Boosts: `{guild.premium_subscription_count}`")
-  shook.send("Removed!", embed=em)
-  sync_db()
-
+  try: 
+    vx = guild.vanity_url_code
+    em = discord.Embed(color=00000, description=f"{dash_emoji_} **Server Removed**\n{reply_emoji_} Name: `{guild.name}`\n{reply_emoji_}ID: `{guild.id}`\n{reply_emoji_}Owner: `{guild.owner}`\n{reply_emoji_}Owner ID: `{guild.owner.id}`\n{reply_emoji_}Membercount: `{guild.member_count}`\n{reply_emoji_} Boosts: `{guild.premium_subscription_count}`\n{reply_emoji_} vanity_url_code: `{vx}`")
+    shook.send("Removed!", embed=em)
+    sync_db()
+    return
+  except:
+    em = discord.Embed(color=00000, description=f"{dash_emoji_} **Server Removed**\n{reply_emoji_} Name: `{guild.name}`\n{reply_emoji_}ID: `{guild.id}`\n{reply_emoji_}Owner: `{guild.owner}`\n{reply_emoji_}Owner ID: `{guild.owner.id}`\n{reply_emoji_}Membercount: `{guild.member_count}`\n{reply_emoji_} Boosts: `{guild.premium_subscription_count}`")
+    shook.send("Removed!", embed=em)
+    sync_db()
 @client.command()
 @commands.guild_only()
 async def guilds(ctx):
